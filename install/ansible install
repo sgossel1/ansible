@@ -1,0 +1,19 @@
+#Installer pip à partir de https://pip.pypa.io/en/stable/installing/
+apt-get install -y python3-distutils python3-testresources
+wget https://bootstrap.pypa.io/get-pip.py -O get-pip.py
+python3 get-pip.py
+
+# Note: use of python/python3 to call get-pip.py will install pip for either one or the other
+
+#Ansible first run
+sudo apt-get install -y ssh
+
+sudo pip install virtualenvwrapper
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Projects
+test -f /usr/local/bin/virtualenvwrapper.sh && source /usr/local/bin/virtualenvwrapper.sh
+test -d ~/Projects || mkdir ~/Projects
+mkproject -f ansible
+workon ansible
+pip install ansible
