@@ -1,0 +1,23 @@
+---
+- hosts: all
+  roles:
+   # Configuration de la machine
+   - { role: common, tags: ['common'] }
+   # Deploiement de l'environnement docker
+   - { role: deployment, tags: ['deployment'] }
+
+# Applicatif
+- hosts: dc1
+  roles:
+    # Configuration message connexion (DC1)
+    - { role: motd, tags: ['motd'] }
+    # Installation et configuration de l'environnement applicatif
+    - { role: ansible-role-docker-php, tags: ['ansible-role-docker-php'] }
+    - { role: geerlingguy.nodejs, tags: ['geerlingguy.nodejs'] }
+    - { role: geerlingguy.mysql, tags: ['geerlingguy.mysql'] }
+# Proxy Apache
+- hosts: dc2
+  roles:
+    # Configuration message connexion (DC2)
+    - { role: motd, tags: ['motd'] }
+

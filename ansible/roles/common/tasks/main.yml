@@ -1,0 +1,26 @@
+---
+- name: Set authorized key taken from file
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ lookup('file', '../../../root/.ssh/id_rsa.pub') }}"
+
+#- name: Install Apache2
+#  package: name=apache2 update_cache=yes state=latest
+#- name: Install PHP
+#  package: name=libapache2-mod-php update_cache=yes state=latest
+#- name: Install MySQL
+#  package: name=mysql-server update_cache=yes state=latest
+#- name: Install PHP MySQL
+#  package: name=php-mysql update_cache=yes state=latest
+#- name: Install dependencies
+#  package:
+#    name:
+#      - php-curl
+#      - php-gd
+#      - php-intl
+#      - php-json 
+#      - php-mbstring
+#      - php-xml
+#      - php-zip
+#    state: latest
